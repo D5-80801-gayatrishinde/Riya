@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PawPalace — Cat Marketplace · Rescue · Hostel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm: #F3EDE3;
+    --sand: #E8DDD0;
+    --clay: #C4A882;
+    --rust: #B5603A;
+    --deep: #3D2B1F;
+    --muted: #7A6558;
+    --white: #FFFFFF;
+    --green: #4A7C59;
+    --green-light: #EAF3E8;
+    --accent: #D4744A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--rust);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .logo span { font-style: italic; color: var(--deep); }
+
+  nav ul {
+    display: flex; list-style: none; gap: 2rem; align-items: center;
+  }
+
+  nav ul a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+    text-decoration: none; color: var(--muted);
+    text-transform: uppercase; transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--rust); }
+
+  .nav-cta {
+    background: var(--rust); color: var(--white) !important;
+    padding: 0.5rem 1.25rem; border-radius: 40px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--deep) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 2.5rem 3rem;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, #F0E8DC 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--rust);
+    background: rgba(181,96,58,0.1); padding: 0.3rem 0.8rem;
+    border-radius: 40px; margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted);
+    line-height: 1.7; max-width: 460px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--rust); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 40px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+    border: 2px solid var(--rust);
+  }
+
+  .btn-primary:hover { background: var(--deep); border-color: var(--deep); }
+
+  .btn-outline {
+    background: transparent; color: var(--deep);
+    padding: 0.85rem 2rem; border-radius: 40px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    border: 2px solid var(--deep); transition: all 0.2s; display: inline-block;
+  }
+
+  .btn-outline:hover { background: var(--deep); color: var(--white); }
+
+  .hero-visual {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+  }
+
+  .hero-card-main {
+    width: 320px; height: 400px;
+    background: var(--warm);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--sand);
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+
+  .cat-illustration {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #F0E5D8 0%, #E8D5C0 100%);
+    font-size: 8rem;
+    position: relative;
+  }
+
+  .hero-card-info {
+    padding: 1.25rem;
+    background: var(--white);
+  }
+
+  .hero-card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; margin-bottom: 0.25rem;
+  }
+
+  .hero-card-info p { font-size: 0.8rem; color: var(--muted); }
+
+  .hero-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--green); color: var(--white);
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 20px;
+  }
+
+  .floating-tag {
+    position: absolute;
+    background: var(--white); padding: 0.6rem 1rem;
+    border-radius: 12px; border: 1px solid var(--sand);
+    font-size: 0.8rem; font-weight: 500;
+    box-shadow: 0 4px 20px rgba(61,43,31,0.08);
+  }
+
+  .tag1 { top: 10%; right: -20px; }
+  .tag2 { bottom: 20%; right: -30px; color: var(--rust); }
+  .tag3 { bottom: 10%; left: -30px; }
+
+  .stats-row {
+    display: flex; gap: 2rem; margin-top: 3rem;
+  }
+
+  .stat { }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: var(--rust); font-weight: 700;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 2.5rem; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--rust);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--deep); line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem; color: var(--muted);
+    max-width: 520px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* MARKETPLACE */
+  #marketplace { background: var(--white); }
+
+  .filter-bar {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.8rem; font-weight: 500;
+    border: 1.5px solid var(--sand);
+    background: transparent; cursor: pointer;
+    color: var(--muted); transition: all 0.2s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--rust); border-color: var(--rust); color: var(--white);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: var(--cream);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--sand);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(61,43,31,0.12);
+  }
+
+  .product-img {
+    height: 180px;
+    background: var(--warm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    position: relative;
+  }
+
+  .product-img .badge {
+    position: absolute; top: 10px; right: 10px;
+    background: var(--rust); color: var(--white);
+    font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .product-img .badge.new { background: var(--green); }
+
+  .product-info { padding: 1rem; }
+  .product-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .product-sub { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .product-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--rust); font-weight: 700; }
+
+  .add-btn {
+    background: var(--deep); color: var(--white);
+    border: none; padding: 0.4rem 0.8rem; border-radius: 8px;
+    font-size: 0.75rem; cursor: pointer; transition: background 0.2s;
+  }
+
+  .add-btn:hover { background: var(--rust); }
+
+  /* RESCUE */
+  #rescue {
+    background: var(--cream);
+  }
+
+  .rescue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .rescue-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--sand);
+    transition: transform 0.2s;
+  }
+
+  .rescue-card:hover { transform: translateY(-4px); }
+
+  .rescue-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5.5rem;
+    position: relative;
+  }
+
+  .rescue-status {
+    position: absolute; bottom: 10px; left: 12px;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+  }
+
+  .rescue-status.available { background: var(--green-light); color: var(--green); }
+  .rescue-status.urgent { background: #FEE9E3; color: var(--rust); }
+  .rescue-status.reserved { background: #FFF8E8; color: #A0832A; }
+
+  .rescue-info { padding: 1.25rem; }
+  .rescue-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; margin-bottom: 0.25rem;
+  }
+
+  .rescue-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0;
+  }
+
+  .tag {
+    font-size: 0.7rem; padding: 0.2rem 0.6rem;
+    border-radius: 20px; background: var(--warm);
+    color: var(--muted); font-weight: 500;
+  }
+
+  .rescue-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+
+  .adopt-btn {
+    width: 100%; background: var(--green);
+    color: var(--white); border: none; padding: 0.7rem;
+    border-radius: 10px; font-size: 0.85rem; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+
+  .adopt-btn:hover { background: #3a6347; }
+
+  /* HOSTEL */
+  #hostel { background: var(--deep); color: var(--cream); }
+  #hostel .section-tag { color: var(--clay); }
+  #hostel .section-title { color: var(--cream); }
+  #hostel .section-sub { color: var(--clay); }
+
+  .booking-container {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .hostel-info { }
+
+  .feature-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(196,168,130,0.2);
+  }
+
+  .feature-icon {
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+
+  .feature-text { }
+  .feature-title { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .feature-sub { font-size: 0.8rem; color: var(--clay); line-height: 1.5; }
+
+  .room-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .room-card {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(196,168,130,0.2);
+    border-radius: 16px; padding: 1.25rem;
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .room-card:hover, .room-card.selected {
+    border-color: var(--clay);
+    background: rgba(196,168,130,0.12);
+  }
+
+  .room-card .room-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .room-card .room-name { font-weight: 500; font-size: 0.9rem; color: var(--cream); margin-bottom: 0.25rem; }
+  .room-card .room-price { font-family: 'Playfair Display', serif; color: var(--clay); font-size: 1rem; }
+
+  /* Booking Form */
+  .booking-form {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2rem;
+    color: var(--deep);
+  }
+
+  .booking-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; margin-bottom: 1.5rem;
+  }
+
+  .form-group { margin-bottom: 1.25rem; }
+
+  .form-group label {
+    display: block; font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.4rem;
+  }
+
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid var(--sand);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; color: var(--deep);
+    background: var(--cream);
+    outline: none; transition: border-color 0.2s;
+  }
+
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--rust);
+  }
+
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--rust); color: var(--white);
+    border: none; padding: 1rem; border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500; cursor: pointer;
+    transition: background 0.2s; margin-top: 0.5rem;
+  }
+
+  .submit-btn:hover { background: var(--deep); }
+
+  .form-note {
+    text-align: center; font-size: 0.75rem;
+    color: var(--muted); margin-top: 0.75rem;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--warm); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .testimonial {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1.75rem;
+    border: 1px solid var(--sand);
+  }
+
+  .stars { color: #E8A44A; font-size: 0.85rem; margin-bottom: 1rem; }
+
+  .testimonial-text {
+    font-size: 0.9rem; line-height: 1.7; color: var(--muted);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .author-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--warm); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem;
+    border: 2px solid var(--sand);
+  }
+
+  .author-name { font-weight: 500; font-size: 0.85rem; }
+  .author-loc { font-size: 0.75rem; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); color: var(--clay);
+    padding: 4rem 2.5rem 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(196,168,130,0.2);
+    padding-bottom: 3rem;
+  }
+
+  .footer-brand .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem; line-height: 1.7; color: var(--clay);
+  }
+
+  .footer-col h4 {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-col ul a { font-size: 0.85rem; color: var(--clay); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.8rem;
+  }
+
+  .footer-paw { font-size: 1.2rem; }
+
+  /* CART INDICATOR */
+  .cart-indicator {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    background: var(--rust); color: var(--white);
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(181,96,58,0.4);
+    transition: transform 0.2s;
+    text-decoration: none;
+  }
+
+  .cart-indicator:hover { transform: scale(1.1); }
+
+  .cart-count {
+    position: absolute; top: -2px; right: -2px;
+    background: var(--deep); color: var(--white);
+    width: 18px; height: 18px; border-radius: 50%;
+    font-size: 0.65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* NOTIFICATION */
+  .notification {
+    position: fixed; bottom: 5.5rem; right: 2rem; z-index: 300;
+    background: var(--deep); color: var(--cream);
+    padding: 0.75rem 1.25rem; border-radius: 12px;
+    font-size: 0.85rem; font-weight: 500;
+    transform: translateY(20px); opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+
+  .notification.show {
+    transform: translateY(0); opacity: 1;
+  }
+
+  /* ANIMATIONS */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .float-anim { animation: float 4s ease-in-out infinite; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up { animation: fadeUp 0.6s ease both; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding-top: 5rem; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-buttons { justify-content: center; }
+    .stats-row { justify-content: center; }
+    .booking-container { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* SECTION DIVIDER */
+  .divider {
+    text-align: center; padding: 1.5rem;
+    background: var(--sand);
+    font-size: 1.5rem;
+    letter-spacing: 1rem;
+  }
+
+  /* MODAL (toast-style booking confirm) */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 400;
+    background: rgba(61,43,31,0.6);
+    align-items: center; justify-content: center;
+  }
+
+  .modal-overlay.show { display: flex; }
+
+  .modal {
+    background: var(--white); border-radius: 24px;
+    padding: 2.5rem; max-width: 440px; width: 90%;
+    text-align: center;
+  }
+
+  .modal-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+  .modal h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .modal p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .modal-close {
+    background: var(--rust); color: var(--white); border: none;
+    padding: 0.75rem 2rem; border-radius: 40px; cursor: pointer;
+    font-size: 0.9rem; font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">🐾 Paw<span>Palace</span></a>
+  <ul>
+    <li><a href="#marketplace">Shop</a></li>
+    <li><a href="#rescue">Rescue</a></li>
+    <li><a href="#hostel">Cat Hostel</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#hostel" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text fade-up">
+    <span class="hero-eyebrow">India's #1 Cat Platform</span>
+    <h1>Everything<br>your <em>cat</em><br>deserves</h1>
+    <p class="hero-sub">Shop premium accessories, give a rescued cat a forever home, or book a luxurious hostel stay while you're away.</p>
+    <div class="hero-buttons">
+      <a href="#marketplace" class="btn-primary">Explore Shop</a>
+      <a href="#rescue" class="btn-outline">Adopt a Cat</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">2,400+</div>
+        <div class="stat-label">Products</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">380</div>
+        <div class="stat-label">Cats Rescued</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Avg Rating</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-main float-anim">
+      <div class="cat-illustration">
+        <span class="hero-badge">Featured</span>
+        🐱
+      </div>
+      <div class="hero-card-info">
+        <h3>Biscuit — 2 yrs</h3>
+        <p>Playful • Indoor • Vaccinated</p>
+      </div>
+    </div>
+    <div class="floating-tag tag1">🛏️ Hostel from ₹299/night</div>
+    <div class="floating-tag tag2">🎀 500+ accessories</div>
+    <div class="floating-tag tag3">💚 Adopt today</div>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section id="marketplace">
+  <div class="section-tag">🛒 Marketplace</div>
+  <h2 class="section-title">Premium Cat Accessories</h2>
+  <p class="section-sub">Handpicked products for your feline family — from cozy beds to gourmet treats.</p>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('beds', this)">Beds & Furniture</button>
+    <button class="filter-btn" onclick="filterProducts('toys', this)">Toys</button>
+    <button class="filter-btn" onclick="filterProducts('food', this)">Food & Treats</button>
+    <button class="filter-btn" onclick="filterProducts('grooming', this)">Grooming</button>
+    <button class="filter-btn" onclick="filterProducts('apparel', this)">Apparel</button>
+  </div>
+
+  <div class="products-grid" id="products-grid">
+  </div>
+</section>
+
+<!-- RESCUE -->
+<section id="rescue">
+  <div class="section-tag">💚 Rescue & Adopt</div>
+  <h2 class="section-title">Give a Cat a<br>Forever Home</h2>
+  <p class="section-sub">All our rescue cats are vaccinated, spayed/neutered, and ready to fill your home with purrs.</p>
+
+  <div class="rescue-grid" id="rescue-grid">
+  </div>
+</section>
+
+<!-- HOSTEL -->
+<section id="hostel">
+  <div class="section-tag">🏨 Cat Hostel</div>
+  <h2 class="section-title">Luxury Stays for<br>Your Furball</h2>
+  <p class="section-sub">Going on a trip? Our certified cat hostel provides 24/7 care, play sessions, and live camera access.</p>
+
+  <div class="booking-container">
+    <div class="hostel-info">
+      <ul class="feature-list">
+        <li>
+          <span class="feature-icon">📹</span>
+          <div class="feature-text">
+            <div class="feature-title">Live Camera Access</div>
+            <div class="feature-sub">Watch your cat anytime on our app. HD cameras in every suite.</div>
+          </div>
+        </li>
+        <li>
+          <span class="feature-icon">🩺</span>
+          <div class="feature-text">
+            <div class="feature-title">Resident Veterinarian</div>
+            <div class="feature-sub">24/7 vet on call. Daily health check for every guest.</div>
+          </div>
+        </li>
+        <li>
+          <span class="feature-icon">🎮</span>
+          <div class="feature-text">
+            <div class="feature-title">3x Daily Play Sessions</div>
+            <div class="feature-sub">Trained staff ensure your cat stays active and happy.</div>
+          </div>
+        </li>
+        <li>
+          <span class="feature-icon">🍽️</span>
+          <div class="feature-text">
+            <div class="feature-title">Custom Meal Plans</div>
+            <div class="feature-sub">We follow your cat's exact diet. Bring their food or use ours.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="room-cards" id="room-cards">
+        <div class="room-card selected" onclick="selectRoom(this, 'Cozy Suite', 299)">
+          <div class="room-icon">🛏️</div>
+          <div class="room-name">Cozy Suite</div>
+          <div class="room-price">₹299/night</div>
+        </div>
+        <div class="room-card" onclick="selectRoom(this, 'Deluxe Suite', 499)">
+          <div class="room-icon">👑</div>
+          <div class="room-name">Deluxe Suite</div>
+          <div class="room-price">₹499/night</div>
+        </div>
+        <div class="room-card" onclick="selectRoom(this, 'Garden Villa', 699)">
+          <div class="room-icon">🌿</div>
+          <div class="room-name">Garden Villa</div>
+          <div class="room-price">₹699/night</div>
+        </div>
+        <div class="room-card" onclick="selectRoom(this, 'Royal Penthouse', 999)">
+          <div class="room-icon">🏰</div>
+          <div class="room-name">Royal Penthouse</div>
+          <div class="room-price">₹999/night</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-form">
+      <h3>Book Your Cat's Stay</h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Check-in Date</label>
+          <input type="date" id="checkin" />
+        </div>
+        <div class="form-group">
+          <label>Check-out Date</label>
+          <input type="date" id="checkout" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Priya Sharma" />
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 98765 43210" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Cat's Name</label>
+          <input type="text" placeholder="e.g. Mochi" />
+        </div>
+        <div class="form-group">
+          <label>Number of Cats</label>
+          <select>
+            <option>1 cat</option>
+            <option>2 cats</option>
+            <option>3 cats</option>
+            <option>4+ cats</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Special Instructions</label>
+        <textarea rows="2" placeholder="Dietary needs, medication, preferences..."></textarea>
+      </div>
+
+      <div style="background: var(--warm); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; font-size: 0.85rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+          <span style="color: var(--muted);">Room</span>
+          <span id="room-display" style="font-weight: 500;">Cozy Suite</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: var(--muted);">Rate</span>
+          <span id="rate-display" style="font-weight: 500; color: var(--rust);">₹299/night</span>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="submitBooking()">Confirm Booking 🐾</button>
+      <p class="form-note">Free cancellation up to 48 hours before check-in</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="text-align: center;">
+    <div class="section-tag">💬 Reviews</div>
+    <h2 class="section-title">Happy Cats, Happier Humans</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Left my two cats at PawPalace for 10 days. The live camera kept me sane! They came back healthier and happier than when I dropped them off."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">🧕</div>
+        <div>
+          <div class="author-name">Zara Patel</div>
+          <div class="author-loc">Mumbai · Hostel Guest</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Adopted Whiskers from PawPalace 6 months ago. The adoption process was smooth, transparent, and the team did all health checks. Best decision ever!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">Rohan Mehta</div>
+          <div class="author-loc">Pune · Rescue Adopter</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"The scratch post I ordered arrived next day, beautifully packaged. My cat hasn't left it since. The shop quality is genuinely premium."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">Ananya Singh</div>
+          <div class="author-loc">Nashik · Shop Customer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-text">🐾 PawPalace</div>
+      <p>India's most trusted platform for cat accessories, rescue adoptions, and premium cat boarding. Based in Nashik, serving pan-India.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Beds & Furniture</a></li>
+        <li><a href="#">Toys & Play</a></li>
+        <li><a href="#">Food & Treats</a></li>
+        <li><a href="#">Grooming</a></li>
+        <li><a href="#">Apparel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Rescue</h4>
+      <ul>
+        <li><a href="#">Adopt a Cat</a></li>
+        <li><a href="#">Surrender a Cat</a></li>
+        <li><a href="#">Foster Program</a></li>
+        <li><a href="#">Donate</a></li>
+        <li><a href="#">Volunteer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Hostel</h4>
+      <ul>
+        <li><a href="#">Room Types</a></li>
+        <li><a href="#">Book a Stay</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 PawPalace. All rights reserved.</span>
+    <span class="footer-paw">🐾</span>
+    <span>Made with love in Nashik, India</span>
+  </div>
+</footer>
+
+<!-- CART INDICATOR -->
+<a href="#marketplace" class="cart-indicator" id="cart-btn">
+  🛒
+  <div class="cart-count" id="cart-count">0</div>
+</a>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">🐱</div>
+    <h3>Booking Confirmed!</h3>
+    <p>We've received your booking request. Our team will call you within 2 hours to confirm the details. Your cat is in the best paws.</p>
+    <button class="modal-close" onclick="closeModal()">Wonderful! 🎉</button>
+  </div>
+</div>
+
+<script>
+  // ---- DATA ----
+  const products = [
+    { id:1, name:'Plush Cat Cave Bed', sub:'Ultra-soft, machine washable', price:'₹1,299', emoji:'🛏️', category:'beds', badge:'Bestseller', badgeClass:'' },
+    { id:2, name:'Feather Wand Toy', sub:'Interactive, telescoping', price:'₹349', emoji:'🪶', category:'toys', badge:'New', badgeClass:'new' },
+    { id:3, name:'Organic Tuna Treats', sub:'No preservatives, 60g', price:'₹199', emoji:'🐟', category:'food', badge:'', badgeClass:'' },
+    { id:4, name:'Self-Cleaning Brush', sub:'Ergonomic, stainless pins', price:'₹499', emoji:'🪮', category:'grooming', badge:'', badgeClass:'' },
+    { id:5, name:'Cat Tuxedo Suit', sub:'Sizes XS–XL', price:'₹799', emoji:'🎩', category:'apparel', badge:'New', badgeClass:'new' },
+    { id:6, name:'Tall Scratching Post', sub:'Sisal rope, 90cm', price:'₹999', emoji:'🧱', category:'beds', badge:'', badgeClass:'' },
+    { id:7, name:'Laser Pointer Toy', sub:'USB rechargeable', price:'₹249', emoji:'🔴', category:'toys', badge:'', badgeClass:'' },
+    { id:8, name:'Royal Canin Indoor', sub:'Adult dry food, 2kg', price:'₹1,850', emoji:'🥣', category:'food', badge:'', badgeClass:'' },
+  ];
+
+  const rescueCats = [
+    { name:'Biscuit', age:'2 yrs', breed:'Tabby Mix', status:'available', statusLabel:'Available', emoji:'🐱', tags:['Playful','Indoor','Vaccinated','Neutered'], desc:'Biscuit loves chin scratches and chasing ribbons. Gets along with other cats.' },
+    { name:'Luna', age:'1 yr', breed:'Persian Mix', status:'urgent', statusLabel:'Urgent', emoji:'😸', tags:['Calm','Apartment','Vaccinated','Spayed'], desc:'Luna is a gentle soul who loves curling up in laps. Needs a quiet home.' },
+    { name:'Mochi', age:'3 yrs', breed:'Scottish Fold', status:'reserved', statusLabel:'Reserved', emoji:'🐈', tags:['Affectionate','Quiet','Vaccinated'], desc:'Mochi has a unique folded ear and a huge personality. Reserved but available Jan.' },
+    { name:'Tiger', age:'4 yrs', breed:'Bengal Mix', status:'available', statusLabel:'Available', emoji:'🐯', tags:['Active','Playful','Vaccinated','Neutered'], desc:'Tiger loves climbing and exploring. Ideal for a home with space to roam.' },
+  ];
+
+  let cartCount = 0;
+  let selectedRoom = 'Cozy Suite';
+  let selectedRate = '₹299/night';
+
+  // ---- RENDER PRODUCTS ----
+  function renderProducts(filter = 'all') {
+    const grid = document.getElementById('products-grid');
+    const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <div class="product-img">
+          <span style="font-size:4rem">${p.emoji}</span>
+          ${p.badge ? `<span class="badge ${p.badgeClass}">${p.badge}</span>` : ''}
+        </div>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-sub">${p.sub}</div>
+          <div class="product-bottom">
+            <span class="product-price">${p.price}</span>
+            <button class="add-btn" onclick="addToCart('${p.name}')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(cat);
+  }
+
+  // ---- RENDER RESCUE ----
+  function renderRescue() {
+    document.getElementById('rescue-grid').innerHTML = rescueCats.map(cat => `
+      <div class="rescue-card">
+        <div class="rescue-img" style="background: ${cat.status === 'urgent' ? '#FEF3EE' : cat.status === 'reserved' ? '#FEFAE8' : '#EFF7F2'}">
+          <span style="font-size:5.5rem">${cat.emoji}</span>
+          <span class="rescue-status ${cat.status}">${cat.statusLabel}</span>
+        </div>
+        <div class="rescue-info">
+          <div class="rescue-name">${cat.name}</div>
+          <div style="font-size:0.8rem; color:var(--muted)">${cat.age} • ${cat.breed}</div>
+          <div class="rescue-tags">
+            ${cat.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+          <p class="rescue-desc">${cat.desc}</p>
+          <button class="adopt-btn" onclick="adoptCat('${cat.name}', '${cat.status}')">${cat.status === 'reserved' ? 'Join Waitlist' : 'Start Adoption'}</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ---- CART ----
+  function addToCart(name) {
+    cartCount++;
+    document.getElementById('cart-count').textContent = cartCount;
+    showNotification(`${name} added to cart 🛒`);
+  }
+
+  // ---- ADOPT ----
+  function adoptCat(name, status) {
+    if (status === 'reserved') {
+      showNotification(`Added to waitlist for ${name} 💌`);
+    } else {
+      showNotification(`Adoption inquiry sent for ${name} 🐾`);
+    }
+  }
+
+  // ---- ROOM SELECT ----
+  function selectRoom(el, name, price) {
+    document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedRoom = name;
+    selectedRate = `₹${price}/night`;
+    document.getElementById('room-display').textContent = name;
+    document.getElementById('rate-display').textContent = selectedRate;
+  }
+
+  // ---- BOOKING ----
+  function submitBooking() {
+    document.getElementById('modal').classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+  }
+
+  // ---- NOTIFICATION ----
+  function showNotification(msg) {
+    const n = document.getElementById('notification');
+    n.textContent = msg;
+    n.classList.add('show');
+    setTimeout(() => n.classList.remove('show'), 2500);
+  }
+
+  // ---- SET DEFAULT DATES ----
+  function setDefaultDates() {
+    const today = new Date();
+    const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+    const nextWeek = new Date(today); nextWeek.setDate(today.getDate() + 7);
+    const fmt = d => d.toISOString().split('T')[0];
+    document.getElementById('checkin').value = fmt(tomorrow);
+    document.getElementById('checkout').value = fmt(nextWeek);
+  }
+
+  // ---- INIT ----
+  renderProducts();
+  renderRescue();
+  setDefaultDates();
+</script>
+</body>
+</html>
